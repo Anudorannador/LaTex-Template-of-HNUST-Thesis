@@ -98,8 +98,9 @@
 
 % 附录设置
 \newcounter{appnum}
-\setcounter{appnum}{1}
-\newcommand{\NewAppend}{\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 附\quad 录 \Alph{appnum}}\chapter*{附\quad 录 \Alph{appnum}}\stepcounter{appnum}\thispagestyle{fancymaintext}}
+\setcounter{appnum}{0}
+\renewcommand{\theappnum}{\Alph{appnum}}
+\newcommand{\NewAppend}{\refstepcounter{appnum}\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 附\quad 录 \Alph{appnum}}\chapter*{附\quad 录 \Alph{appnum}}\thispagestyle{fancymaintext}}
 
 % 图表label设置
 \renewcommand{\figurename}{图}
