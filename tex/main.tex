@@ -1,0 +1,164 @@
+\documentclass[a4paper,12pt,oneside]{book} % A4纸，小四号大小就是12pt
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+% 字体相关设置
+\usepackage[AutoFakeBold=true]{xeCJK} %使用CJK包以便使用中文
+\usepackage{CJKnumb}
+\usepackage{xunicode}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setCJKmainfont{SimSun}
+\setCJKfamilyfont{Heiti}{SimHei}
+
+% 页面设置
+\usepackage[headheight=2cm,marginparwidth=0pt,headsep=1cm,foot=1cm,marginparsep=0pt]{geometry} % 设置页眉高度2cm,页脚高度其实没卵用的，除了上边距+页眉高度+正文体高度，其他都是页脚
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm} % 设置左、右、下边距为25mm，上边距30mm
+
+% 页眉和页脚设置
+\usepackage{fancyhdr} % 需要使用的包
+
+% 章节设置
+	% 章节页眉页脚设置
+\newcommand{\wuhao}{\fontsize{10pt}{0pt}\selectfont} % 五号字体
+\fancypagestyle{fancymaintext}{ % 正文页眉页脚设置
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt} % 去掉页眉的线
+	\fancyhead[C]{\wuhao 湖南科技大学本科毕业设计(论文)} % 页眉文字
+	\fancyfoot[C]{-\thepage-} % 格式 "-1-","-2-"....
+}
+\usepackage{titlesec}
+	% 设置 章 标题
+\newcommand{\xiaoer}{\fontsize{18pt}{0pt}\selectfont} % 小二字体18pt
+\titlespacing*{\chapter}{0pt}{18pt}{18pt} % 段前段后各空0.5行
+\titleformat{\chapter}[hang]{\centering\xiaoer\bfseries}{第\CJKnumber\thechapter 章\quad}{0pt}{}[\vspace{0cm}]
+	% 设置 节 标题
+\newcommand{\sihao}{\fontsize{14pt}{0pt}\selectfont} % 四号字体14pt
+\titlespacing*{\section}{0pt}{14pt}{14pt}% 段前段后各空0.5行
+\titleformat{\section}[hang]{\sihao\bfseries}{\thesection\quad}{0pt}{}{}
+	% 设置 条 标题
+\newcommand{\xiaosi}{\fontsize{12pt}{0pt}\selectfont} % 小四字体12pt，空0.5行
+\titlespacing*{\subsection}{0pt}{12pt}{12pt}
+\titleformat{\subsection}[hang]{\xiaosi\bfseries}{\thesubsection\quad}{0pt}{}{}
+
+% 使用款、项
+\usepackage{enumitem}
+	% label=(\arabic*) 款、项序号为 (1), (2)...
+	% itemindent=24 一个字12pt，空两格24pt
+	% itemsep=-3pt 每两个item的上下间距减小，更紧凑
+\setenumerate{label=(\arabic*), itemindent=24pt, itemsep=-3pt}
+
+% 正文设置
+\usepackage{indentfirst} % 首行缩进
+\setlength\parindent{24pt} % 因为字大小12pt，所以缩进两个字就是24pt
+\linespread{1.3} % 1.25倍行距 [1是单倍行距，1.3是1.25倍行距，1.6则是双倍行距]
+\usepackage{layout}
+
+% 目录设置
+	% 目录页眉页脚设置
+\fancypagestyle{fancycontent}{
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt} % 去掉页眉的线
+	\fancyfoot[C]{-\thepage-}
+}
+\usepackage{titletoc} % 控制目录的宏包
+\titlecontents{chapter}[0em]{\addvspace{18pt}\sihao}{\bfseries 第 \CJKnumber\thecontentslabel 章\quad}{}{\titlerule*[5pt]{$\cdot$}\contentspage} % 目录章样式，四号加粗宋体 titlerule*[Xpt]调整点的密集度，X越小密度越高
+\titlecontents{section}[2em]{\addvspace{14pt}\xiaosi}{\thecontentslabel\quad}{}{\titlerule*[5pt]{$\cdot$}\contentspage}% 目录节样式
+\titlecontents{subsection}[4em]{\addvspace{8pt}\xiaosi}{\thecontentslabel\quad}{}{\titlerule*[5pt]{$\cdot$}\contentspage}
+\newcommand{\sanhao}{\fontsize{14pt}{0pt}\selectfont} % 三号字体
+\renewcommand{\contentsname}{\sanhao\CJKfamily{Heiti}\textbf{\large 目 \qquad 录}} % 目录样式
+
+% 脚注设置
+\usepackage{tikz}
+\newcommand{\footnotenumber}{\fontsize{4pt}{0pt}\selectfont}
+\newcommand*\circled[1]{%
+	\tikz[baseline=-4pt]\node[shape=circle,draw,inner sep=0.2pt,font=\footnotenumber,minimum size=1pt] (char) {#1};} % baseline=X，X负的绝对值越大，脚注产生的圆圈就越高
+\renewcommand\thefootnote{\protect\circled{\arabic{footnote}}}
+
+% 数学相关设置
+\usepackage{amsbsy}
+\usepackage{amssymb}
+
+% 插图编排设置
+\usepackage{float} % 能够使用 H 位置
+\usepackage{wrapfig} % 能够使用文字环包的图
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption} % 子图的标题样式需要这个包
+\captionsetup[subfigure]{labelformat=simple, labelsep=none}
+\renewcommand{\thesubfigure}{\alph{subfigure})\ } % 子图的标题样式 a) b) c)
+
+% 参考文献
+\renewcommand{\bibname}{\sihao 参考文献}
+\bibliographystyle{gbt7714-2005} % 使用 GB/T 7714-2005 的标准，GB7714-87在2005年就被废了 感谢提供：https://github.com/Haixing-Hu/GBT7714-2005-BibTeX-Style
+\usepackage{url} % 使用在线链接参考文献使用
+
+% 致谢设置
+\newcommand{\thanksfor}{\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 致\qquad 谢}\chapter*{致\qquad 谢}\thispagestyle{fancymaintext}}
+
+% 附录设置
+\newcounter{appnum}
+\setcounter{appnum}{1}
+\newcommand{\NewAppend}{\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 附\quad 录 \Alph{appnum}}\chapter*{附\quad 录 \Alph{appnum}}\stepcounter{appnum}\thispagestyle{fancymaintext}}
+
+% 图表label设置
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+
+\usepackage{pdfpages} % 将扉页、任务书等PDF进行导入需要用到此包
+
+\begin{document}
+
+\author{author}
+\title{title}
+\date{2016年上半年}
+
+\frontmatter
+\includepdf[pages={1-}]{../docs/frontpages.pdf} % 将扉页、任务书等PDF导入，如果不需要，可以注释这行。
+%\maketitle
+
+\newpage
+\setcounter{page}{1}
+\pagestyle{fancycontent}
+
+% 插入目录
+\tableofcontents
+\thispagestyle{fancycontent}
+
+% 设置摘要，因为 class 是 book，所以没有 Abstruct 环境，而且字体大小跟chapter一样，所以用 chapter* 来代替
+\newcommand{\NewAbstract}[1]{\chapter*{#1}\thispagestyle{empty}}
+\newpage
+\pagestyle{empty}
+\include{./texs/Abstract_Chinese} % 请转到该文档中填写中文摘要
+\include{./texs/Abstract_English} % 请转到该文档中填写英文摘要
+
+\mainmatter
+\newpage
+\pagestyle{fancymaintext}
+
+\newcommand{\NewChapter}[1]{\chapter{#1}\thispagestyle{fancymaintext}}
+% 以下是各个章：
+% 每章可自定义名称，然后包含进来
+% 每章第一行 \chapter{title} 后第二行务必加上 \thispagestyle{fancymaintext}
+% 或者直接使用命令 \NewChapter{title}
+\include{./texs/example}
+
+\backmatter
+% bibliography, glossary and index would go here.
+% 参考文献
+\newpage
+\addcontentsline{toc}{chapter}{\sihao \bfseries 参考文献} % 把参考文献加入目录
+	% 请在 bibfile.bbl 中写好文献
+{\wuhao \bibliography{bibfile}} % 要求用5号字体
+\thispagestyle{fancymaintext}
+
+% 致谢
+% 致谢请用 \thanksfor
+\include{./texs/thanksfor}
+
+% 附录
+% 附录请用 \NewAppend
+\appendix
+\include{./texs/appendix_eg}
+
+\end{document}
