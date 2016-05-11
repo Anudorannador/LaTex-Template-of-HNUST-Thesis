@@ -59,14 +59,15 @@
 \fancypagestyle{fancycontent}{
 	\fancyhf{}
 	\renewcommand{\headrulewidth}{0pt} % 去掉页眉的线
+	\fancyhead[C]{\wuhao 湖南科技大学本科毕业设计(论文)} % 页眉文字
 	\fancyfoot[C]{-\thepage-}
 }
 \usepackage{titletoc} % 控制目录的宏包
 \titlecontents{chapter}[0em]{\addvspace{18pt}\sihao}{\bfseries 第 \CJKnumber\thecontentslabel 章\quad}{}{\titlerule*[5pt]{$\cdot$}\contentspage} % 目录章样式，四号加粗宋体 titlerule*[Xpt]调整点的密集度，X越小密度越高
 \titlecontents{section}[2em]{\addvspace{14pt}\xiaosi}{\thecontentslabel\quad}{}{\titlerule*[5pt]{$\cdot$}\contentspage}% 目录节样式
 \titlecontents{subsection}[4em]{\addvspace{8pt}\xiaosi}{\thecontentslabel\quad}{}{\titlerule*[5pt]{$\cdot$}\contentspage}
-\newcommand{\sanhao}{\fontsize{14pt}{0pt}\selectfont} % 三号字体
-\renewcommand{\contentsname}{\sanhao\CJKfamily{Heiti}\textbf{\large 目 \qquad 录}} % 目录样式
+\newcommand{\sanhao}{\fontsize{16pt}{0pt}\selectfont} % 三号字体
+\renewcommand{\contentsname}{\sanhao\CJKfamily{Heiti}\textbf{目 \qquad 录}} % 目录样式
 
 % 脚注设置
 \usepackage{tikz}
@@ -126,8 +127,8 @@
 \pagestyle{fancycontent}
 
 % 插入目录
+\addtocontents{toc}{\protect\thispagestyle{fancycontent}}
 \tableofcontents
-\thispagestyle{fancycontent}
 
 % 设置摘要，因为 class 是 book，所以没有 Abstruct 环境，而且字体大小跟chapter一样，所以用 chapter* 来代替
 \newcommand{\NewAbstract}[1]{\chapter*{#1}\thispagestyle{empty}}
