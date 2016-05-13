@@ -122,6 +122,13 @@
 \includepdf[pages={1-}]{../docs/frontpages.pdf} % 将扉页、任务书等PDF导入，如果不需要，可以注释这行。
 %\maketitle
 
+% 设置摘要，因为 class 是 book，所以没有 Abstruct 环境，而且字体大小跟chapter一样，所以用 chapter* 来代替
+\newcommand{\NewAbstract}[1]{\chapter*{#1}\thispagestyle{empty}}
+\newpage
+\pagestyle{empty}
+\include{./texs/Abstract_Chinese} % 请转到该文档中填写中文摘要
+\include{./texs/Abstract_English} % 请转到该文档中填写英文摘要
+
 \newpage
 \setcounter{page}{1}
 \pagestyle{fancycontent}
@@ -129,13 +136,6 @@
 % 插入目录
 \addtocontents{toc}{\protect\thispagestyle{fancycontent}}
 \tableofcontents
-
-% 设置摘要，因为 class 是 book，所以没有 Abstruct 环境，而且字体大小跟chapter一样，所以用 chapter* 来代替
-\newcommand{\NewAbstract}[1]{\chapter*{#1}\thispagestyle{empty}}
-\newpage
-\pagestyle{empty}
-\include{./texs/Abstract_Chinese} % 请转到该文档中填写中文摘要
-\include{./texs/Abstract_English} % 请转到该文档中填写英文摘要
 
 \mainmatter
 \newpage
