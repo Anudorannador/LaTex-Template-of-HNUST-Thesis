@@ -17,7 +17,6 @@
  - [tex](./tex) 下有个[Makefile](./tex/Makefile)文件，Linux和Mac OS的用户可以直接运行`make`命令进行编译，生成一个对应的pdf文档，当然`make clean`会删除编译信息，请注意，包括 pdf 文档。不知Makefile为何物的同学可忽略此信息，感谢您的阅读。
  - 手动编译：因为LaTeX的性质，所以先编译一次文档，再编译一次文献，再编译两次文档，所以就是：`xelatex main && bibtex main && xelatex main && xelatex main`。
  - 如果编译的时候不需要扉页、任务书这些信息，可以把[./tex/main.tex](./tex/main.tex)文件122行的`\includepdf[pages={1-}]{../docs/frontpages.pdf}`那行命令注释掉；或者自己修改需要打印哪些页。
- - 由于没有说明页眉下面是否需要加一条横线，所以需要横线时，把[./tex/main.tex](./tex/main.tex)的第26行和61行注释掉。
 
 ## 感谢
 感谢 [GB/T7714-2005 bst文件](https://github.com/Haixing-Hu/GBT7714-2005-BibTeX-Style)的提供者[Haixing-Hu](https://github.com/Haixing-Hu)。
