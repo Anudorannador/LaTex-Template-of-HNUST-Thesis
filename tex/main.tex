@@ -11,24 +11,27 @@
 \setCJKmainfont{SimSun}
 \setCJKfamilyfont{Heiti}{SimHei}
 
+% 字体大小
+\newcommand{\wuhao}{\fontsize{10pt}{10pt}\selectfont} % 五号字体 10pt
+\newcommand{\xiaoer}{\fontsize{18pt}{0pt}\selectfont} % 小二字体 18pt
+\newcommand{\sanhao}{\fontsize{16pt}{0pt}\selectfont} % 三号字体 16pt
+
 % 页面设置
 \usepackage[headheight=2cm,marginparwidth=0pt,headsep=1cm,foot=1cm,marginparsep=0pt]{geometry} % 设置页眉高度2cm,页脚高度其实没卵用的，除了上边距+页眉高度+正文体高度，其他都是页脚
 \geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm} % 设置左、右、下边距为25mm，上边距30mm
 
 % 页眉和页脚设置
 \usepackage{fancyhdr} % 需要使用的包
+\fancypagestyle{plain}{% 重定义 plain style，这个样式章节中全部用到。
+	\fancyhf{}
+	\fancyhead[C]{\wuhao 湖南科技大学本科毕业设计(论文)}
+	\fancyfoot[C]{-\thepage-}
+%	\renewcommand{\headrulewidth}{0pt} % 去掉页眉的线
+}
 
 % 章节设置
-	% 章节页眉页脚设置
-\newcommand{\wuhao}{\fontsize{10pt}{10pt}\selectfont} % 五号字体
-\fancypagestyle{fancymaintext}{ % 正文页眉页脚设置
-	\fancyhf{}
-	\fancyhead[C]{\wuhao 湖南科技大学本科毕业设计(论文)} % 页眉文字
-	\fancyfoot[C]{-\thepage-} % 格式 "-1-","-2-"....
-}
 \usepackage{titlesec}
 	% 设置 章 标题
-\newcommand{\xiaoer}{\fontsize{18pt}{0pt}\selectfont} % 小二字体18pt
 \titlespacing*{\chapter}{0pt}{18pt}{18pt} % 段前段后各空0.5行
 \titleformat{\chapter}[hang]{\centering\xiaoer\bfseries}{第\CJKnumber\thechapter 章\quad}{0pt}{}[\vspace{0cm}]
 	% 设置 节 标题
@@ -54,17 +57,10 @@
 \usepackage{layout}
 
 % 目录设置
-	% 目录页眉页脚设置
-\fancypagestyle{fancycontent}{
-	\fancyhf{}
-	\fancyhead[C]{\wuhao 湖南科技大学本科毕业设计(论文)} % 页眉文字
-	\fancyfoot[C]{-\thepage-}
-}
 \usepackage{titletoc} % 控制目录的宏包
-\titlecontents{chapter}[0em]{\addvspace{18pt}\sihao}{\bfseries 第 \CJKnumber\thecontentslabel 章\quad}{}{\wuhao\titlerule*[5pt]{$\cdot$}\contentspage} % 目录章样式，四号加粗宋体 titlerule*[Xpt]调整点的密集度，X越小密度越高
+\titlecontents{chapter}[0em]{\addvspace{18pt}\sihao}{\bfseries 第\CJKnumber\thecontentslabel 章\quad}{}{\wuhao\titlerule*[5pt]{$\cdot$}\contentspage} % 目录章样式，四号加粗宋体 titlerule*[Xpt]调整点的密集度，X越小密度越高
 \titlecontents{section}[2em]{\addvspace{14pt}\xiaosi}{\thecontentslabel\quad}{}{\wuhao\titlerule*[5pt]{$\cdot$}\contentspage}% 目录节样式
 \titlecontents{subsection}[4em]{\addvspace{8pt}\xiaosi}{\thecontentslabel\quad}{}{\wuhao\titlerule*[5pt]{$\cdot$}\contentspage}
-\newcommand{\sanhao}{\fontsize{16pt}{0pt}\selectfont} % 三号字体
 \renewcommand{\contentsname}{\sanhao\CJKfamily{Heiti}\textbf{目 \qquad 录}} % 目录样式
 
 % 脚注设置
@@ -94,15 +90,16 @@
 \usepackage{url} % 使用在线链接参考文献使用
 
 % 致谢设置
-\newcommand{\thanksfor}{\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 致\qquad 谢}\chapter*{致\qquad 谢}\thispagestyle{fancymaintext}}
+\newcommand{\thanksfor}{\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 致\qquad 谢}\chapter*{致\qquad 谢}}
 
 % 附录设置
 \newcounter{appnum}
 \setcounter{appnum}{0}
 \renewcommand{\theappnum}{\Alph{appnum}}
-\newcommand{\NewAppend}{\refstepcounter{appnum}\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 附\quad 录 \Alph{appnum}}\chapter*{附\quad 录 \Alph{appnum}}\thispagestyle{fancymaintext}}
+\newcommand{\NewAppend}{\refstepcounter{appnum}\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 附\quad 录 \Alph{appnum}}\chapter*{附\quad 录 \Alph{appnum}}}
 
 % 图表label设置
+\usepackage{multirow} % 多行列表
 \renewcommand{\figurename}{图}
 \renewcommand{\tablename}{表}
 
@@ -129,40 +126,28 @@
 
 \newpage
 \setcounter{page}{1}
-\pagestyle{fancycontent}
+\pagestyle{plain} % 目录开始使用统一的页面样式
 
 % 插入目录
-\addtocontents{toc}{\protect\thispagestyle{fancycontent}}
 \tableofcontents
 
 \mainmatter
 \newpage
-\pagestyle{fancymaintext}
 
-\newcommand{\NewChapter}[1]{\chapter{#1}\thispagestyle{fancymaintext}}
 % 以下是各个章：
 % 每章可自定义名称，然后包含进来
-% 每章第一行 \chapter{title} 后第二行务必加上 \thispagestyle{fancymaintext}
-% 或者直接使用命令 \NewChapter{title}
 \include{./texs/example}
 
 \backmatter
 % bibliography, glossary and index would go here.
+
 % 参考文献
 \newpage
-\fancypagestyle{plain}{% 因为参考文献第一个页要用到 plain 的page style.
-	\fancyhf{}
-	\fancyhead[C]{\wuhao 湖南科技大学本科毕业设计(论文)}
-	\fancyfoot[C]{-\thepage-}
-}
-\pagestyle{plain}
 \addcontentsline{toc}{chapter}{\sihao \bfseries 参考文献} % 把参考文献加入目录
-	% 请在 bibfile.bbl 中写好文献
-{\wuhao \bibliography{bibfile}} % 要求用5号字体
+{\wuhao \bibliography{bibfile}} % 请在 bibfile.bbl 中写好文献 % 要求用5号字体
 
 % 致谢
 % 致谢请用 \thanksfor
-\pagestyle{fancymaintext}
 \include{./texs/thanksfor}
 
 % 附录
