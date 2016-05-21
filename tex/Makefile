@@ -1,6 +1,7 @@
 # Created by Anudorannador, Mar 9th, 2016
 
 TEXBINDIR=
+AUXFILETYPE= *.log *.aux *.dvi *.lof *.lot *.bit *.idx *.glo *.bbl *.bcf *.ilg *.toc *.ind *.out *.blg *.fdb_latexmk *.fls
 
 .PHONY: all tex bib clean
 
@@ -17,5 +18,5 @@ bib:
 	$(TEXBINDIR)bibtex main
 
 clean:
-	rm -rf *.aux *.log main.pdf *.syntex.gz *.synctex.gz *.toc *.bak~ *.bak *.swap *.bbl *.blg
-	cd texs && rm -rf *.aux *.log *.syntex.gz *.synctex.gz *.toc *.bak~ *.bak *.swap
+	rm -rf $(AUXFILETYPE)
+	cd texs && rm -rf $(AUXFILETYPE)
