@@ -67,9 +67,11 @@
 % 使用款、项
 \usepackage{enumitem}
 	% label=(\arabic*) 款、项序号为 (1), (2)...
-	% itemindent=24 一个字12pt，空两格24pt
+	% leftmargin=0pt 跟正文一致左对齐
+	% itemindent=48 首行空48pt，一个字12pt，因为跟正文左对齐，所以首行要缩进4个字
 	% itemsep=-3pt 每两个item的上下间距减小，更紧凑
-\setenumerate{label=(\arabic*), itemindent=24pt, itemsep=-3pt}
+\setenumerate{label=(\arabic*), leftmargin=0pt, itemindent=48pt, itemsep=-3pt} % 带序列号
+\setlist{leftmargin=0pt, itemindent=48pt, itemsep=-3pt} % 不带序列号
 
 % 正文设置
 \usepackage{indentfirst} % 首行缩进
