@@ -102,8 +102,8 @@ foot=1cm] %页脚高度
 \usepackage{titletoc} % 控制目录的宏包
 \titlecontents{chapter}[0em]{\sihao\vspace{5.95pt}}{\bfseries 第\CJKnumber\thecontentslabel 章\quad}{}{\wuhao\titlerule*[5pt]{$\cdot$}{\xiaosi\contentspage}}[\addvspace{2.5pt}] % 目录章样式，四号加粗宋体 titlerule*[Xpt]调整点的密集度，X越小密度越高
 \titlecontents{section}[2em]{\xiaosi}{\thecontentslabel\quad}{}{\wuhao\titlerule*[5pt]{$\cdot$}{\xiaosi\contentspage}} % 目录节样式
-\titlecontents{subsection}[4em]{\xiaosi}{\thecontentslabel\quad}{}{\wuhao\titlerule*[5pt]{$\cdot$}{\xiaosi\contentspage}}
-\renewcommand{\contentsname}{\sanhao\CJKfamily{Heiti}\textbf{目 \qquad 录}}
+\titlecontents{subsection}[4em]{\xiaosi}{\thecontentslabel\quad}{}{\wuhao\titlerule*[5pt]{$\cdot$}{\xiaosi\contentspage}} % 目录条、款样式
+\renewcommand{\contentsname}{\sanhao\CJKfamily{Heiti}\textbf{目 \qquad 录}} % 目录黑体三号
 
 
 % 脚注设置
@@ -115,8 +115,8 @@ foot=1cm] %页脚高度
 
 % 数学相关设置
 \usepackage{amsbsy}
-\usepackage{amssymb}
-\usepackage{amstext}
+\usepackage{amssymb} % 数学符号宏包，可以使用更多的数学符号
+\usepackage{amstext} % 数学字体宏包，数学环境下使用国际标准数学字体，而非 Time New Roman 字体
 
 % 插图编排设置
 \usepackage{float} % 能够使用 H 位置
@@ -128,18 +128,18 @@ foot=1cm] %页脚高度
 \renewcommand{\thesubfigure}{\alph{subfigure})\ } % 子图的标题样式 a) b) c)
 
 % 参考文献
-\renewcommand{\bibname}{\sihao 参\quad 考\quad 文\quad 献}
+\renewcommand{\bibname}{\sihao 参\quad 考\quad 文\quad 献} % 参考文献标题样式
 \bibliographystyle{gbt7714-2005} % 使用 GB/T 7714-2005 的标准，GB7714-87在2005年就被废了 感谢提供：https://github.com/Haixing-Hu/GBT7714-2005-BibTeX-Style
 \usepackage{url} % 使用在线链接参考文献使用
 
 % 致谢设置
-\newcommand{\thanksfor}{\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 致\qquad 谢}\chapter*{致\qquad 谢}}
+\newcommand{\thanksfor}{\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 致\qquad 谢}\chapter*{致\qquad 谢}} % 致谢标题样式
 
 % 附录设置
 \newcounter{appnum}
 \setcounter{appnum}{0}
 \renewcommand{\theappnum}{\Alph{appnum}}
-\newcommand{\NewAppend}{\refstepcounter{appnum}\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 附\quad 录 \Alph{appnum}}\chapter*{附\quad 录 \Alph{appnum}}}
+\newcommand{\NewAppend}{\refstepcounter{appnum}\newpage\addcontentsline{toc}{chapter}{\sihao \bfseries 附\quad 录 \Alph{appnum}}\chapter*{附\quad 录 \Alph{appnum}}} % 附录标题样式
 
 % 图表label设置
 \usepackage{multirow} % 多行列表
